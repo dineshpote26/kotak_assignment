@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kotak_assignment/app/common/utils/get_initials.dart';
 import 'package:kotak_assignment/app/common/widgets/circle_avatar_text.dart';
 import 'package:kotak_assignment/app/common/widgets/custom_text.dart';
+import 'package:kotak_assignment/app/features/bloc/tasks_bloc.dart';
+import 'package:kotak_assignment/app/features/bloc/tasks_state.dart';
 import 'package:kotak_assignment/app/features/view/add_task.dart';
 import 'package:kotak_assignment/app/features/view/task_detail.dart';
 import 'package:kotak_assignment/app/models/task.dart';
@@ -9,27 +12,6 @@ import 'package:kotak_assignment/app/models/task_response.dart';
 
 class TaskListScreen extends StatelessWidget {
   TaskListScreen({Key? key}) : super(key: key);
-
-  TaskResponse taskResponse = TaskResponse(today: [
-    const Task(
-        title: 'Task1',
-        description: 'Task1 Description',
-        createDate: "15-07-2023"),
-    const Task(
-        title: 'Task2',
-        description: 'Task2 Description',
-        createDate: "15-07-2023")
-  ], tomorrow: [
-    const Task(
-        title: 'Task2',
-        description: 'Task1 Description',
-        createDate: "16-07-2023")
-  ], upcoming: [
-    const Task(
-        title: 'Task3',
-        description: 'Task1 Description',
-        createDate: "17-07-2023")
-  ]);
 
   @override
   Widget build(BuildContext context) {
@@ -48,124 +30,135 @@ class TaskListScreen extends StatelessWidget {
         },
         child: const Icon(Icons.add),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 12),
-            const CustomText(
-              text: "Today",
-              size: 20,
-              fontWeight: FontWeight.bold,
-            ),
-            const SizedBox(height: 8),
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: taskResponse.today!.length ?? 0,
-                itemBuilder: (BuildContext context, int index) {
-                  return InkWell(
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) {
-                          return const TaskDetail();
-                        }),
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: Row(
-                        children: [
-                          CircleAvatarText(
-                            text: GetInitials.getInitials(
-                                taskResponse.today![index].title ?? ""),
-                            radius: 20,
+      body: BlocBuilder<TaskBloc, TaskState>(
+        builder: (context,state) {
+          if(state is TaskLoading){
+            return const CircularProgressIndicator();
+          }
+          if (state is TaskLoaded) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 12),
+                  const CustomText(
+                    text: "Today",
+                    size: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  const SizedBox(height: 8),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: state.tasks.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return const TaskDetail();
+                              }),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: Row(
+                              children: [
+                                CircleAvatarText(
+                                  text: GetInitials.getInitials(
+                                      state.tasks[index].title ?? ""),
+                                  radius: 20,
+                                ),
+                                const SizedBox(width: 5),
+                                CustomText(
+                                    text: state.tasks[index].title ?? ""),
+                              ],
+                            ),
                           ),
-                          const SizedBox(width: 5),
-                          CustomText(
-                              text: taskResponse.today![index].title ?? ""),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-            const SizedBox(height: 12),
-            const CustomText(
-              text: "Tomorrow",
-              size: 20,
-              fontWeight: FontWeight.bold,
-            ),
-            const SizedBox(height: 8),
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: taskResponse.tomorrow!.length ?? 0,
-                itemBuilder: (BuildContext context, int index) {
-                  return InkWell(
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) {
-                          return const TaskDetail();
-                        }),
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: Row(
-                        children: [
-                          CircleAvatarText(
-                            text: GetInitials.getInitials(
-                                taskResponse.tomorrow![index].title ?? ""),
-                            radius: 20,
+                        );
+                      }),
+                  const SizedBox(height: 12),
+                  const CustomText(
+                    text: "Tomorrow",
+                    size: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  const SizedBox(height: 8),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: state.tasks.length ?? 0,
+                      itemBuilder: (BuildContext context, int index) {
+                        return InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return const TaskDetail();
+                              }),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: Row(
+                              children: [
+                                CircleAvatarText(
+                                  text: GetInitials.getInitials(
+                                      state.tasks[index].title ?? ""),
+                                  radius: 20,
+                                ),
+                                const SizedBox(width: 5),
+                                CustomText(
+                                    text: state.tasks[index].title ?? ""),
+                              ],
+                            ),
                           ),
-                          const SizedBox(width: 5),
-                          CustomText(
-                              text: taskResponse.tomorrow![index].title ?? ""),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-            const SizedBox(height: 12),
-            const CustomText(
-              text: "Upcoming",
-              size: 20,
-              fontWeight: FontWeight.bold,
-            ),
-            const SizedBox(height: 8),
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: taskResponse.upcoming!.length ?? 0,
-                itemBuilder: (BuildContext context, int index) {
-                  return InkWell(
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) {
-                          return const TaskDetail();
-                        }),
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: Row(
-                        children: [
-                          CircleAvatarText(
-                            text: GetInitials.getInitials(
-                                taskResponse.upcoming![index].title ?? ""),
-                            radius: 20,
+                        );
+                      }),
+                  const SizedBox(height: 12),
+                  const CustomText(
+                    text: "Upcoming",
+                    size: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  const SizedBox(height: 8),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: state.tasks.length ?? 0,
+                      itemBuilder: (BuildContext context, int index) {
+                        return InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return const TaskDetail();
+                              }),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: Row(
+                              children: [
+                                CircleAvatarText(
+                                  text: GetInitials.getInitials(
+                                      state.tasks[index].title ?? ""),
+                                  radius: 20,
+                                ),
+                                const SizedBox(width: 5),
+                                CustomText(
+                                    text: state.tasks[index].title ?? ""),
+                              ],
+                            ),
                           ),
-                          const SizedBox(width: 5),
-                          CustomText(
-                              text: taskResponse.upcoming![index].title ?? ""),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-          ],
-        ),
+                        );
+                      }),
+                ],
+              ),
+            );
+          }else{
+            return const Text('No Task Found');
+          }
+        }
       ),
     );
   }

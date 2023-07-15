@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kotak_assignment/app/features/bloc/tasks_bloc.dart';
+import 'package:kotak_assignment/app/features/bloc/tasks_event.dart';
 import 'package:kotak_assignment/app/features/view/task_list.dart';
+
+import 'app/features/repository/task_repository.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +21,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  TaskListScreen(),
+      home:  RepositoryProvider(
+        create: (context) => TaskRepository(),
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+                create: (context) => TaskBloc(
+                  RepositoryProvider.of<TaskRepository>(context),
+                )..add(const LoadTasks()))
+          ], child: TaskListScreen(),
+        ),
+      ),
     );
   }
 }

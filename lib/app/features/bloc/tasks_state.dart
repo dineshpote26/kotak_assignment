@@ -10,11 +10,17 @@ abstract class TaskState extends Equatable {
 
 class TaskLoading extends TaskState {}
 
-class TodosLoaded extends TaskState {
+class TaskLoaded extends TaskState {
   final List<Task> tasks;
 
-  const TodosLoaded({this.tasks = const <Task>[]});
+  const TaskLoaded({this.tasks = const <Task>[]});
+
 
   @override
   List<Object> get props => [tasks];
+}
+
+class TasksError extends TaskState {
+  final String? message;
+  const TasksError(this.message);
 }
