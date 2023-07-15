@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>947679623297-2s95fhlq9tn2mdg8783kk9pir1v2at89.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.947679623297-2s95fhlq9tn2mdg8783kk9pir1v2at89</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCCGEI2I1sE6Lv4QDCpmJ53XMqANelS91g</string>
+	<key>GCM_SENDER_ID</key>
+	<string>947679623297</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.kotakAssignment</string>
+	<key>PROJECT_ID</key>
+	<string>kotat-assignment</string>
+	<key>STORAGE_BUCKET</key>
+	<string>kotat-assignment.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:947679623297:ios:68c4f30923187e4c813580</string>
+</dict>
+</plist>

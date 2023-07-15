@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "947679623297",
+    "project_id": "kotat-assignment",
+    "storage_bucket": "kotat-assignment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947679623297:android:a4a91dd51da60126813580",
+        "android_client_info": {
+          "package_name": "com.example.kotak_assignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "947679623297-5qra2h0ogcm0ou1d2gcnav9hoqerhm0r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz9agqjvf-ds1iu4zPqTbD_ZkC1Htt0gQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "947679623297-5qra2h0ogcm0ou1d2gcnav9hoqerhm0r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "947679623297-2s95fhlq9tn2mdg8783kk9pir1v2at89.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.kotakAssignment"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
