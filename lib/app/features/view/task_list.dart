@@ -3,6 +3,7 @@ import 'package:kotak_assignment/app/common/utils/get_initials.dart';
 import 'package:kotak_assignment/app/common/widgets/circle_avatar_text.dart';
 import 'package:kotak_assignment/app/common/widgets/custom_text.dart';
 import 'package:kotak_assignment/app/features/view/add_task.dart';
+import 'package:kotak_assignment/app/features/view/task_detail.dart';
 import 'package:kotak_assignment/app/models/task.dart';
 import 'package:kotak_assignment/app/models/task_response.dart';
 
@@ -63,19 +64,29 @@ class TaskListScreen extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: taskResponse.today!.length ?? 0,
                 itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Row(
-                      children: [
-                        CircleAvatarText(
-                          text: GetInitials.getInitials(
-                              taskResponse.today![index].title ?? ""),
-                          radius: 20,
-                        ),
-                        const SizedBox(width: 5),
-                        CustomText(
-                            text: taskResponse.today![index].title ?? ""),
-                      ],
+                  return InkWell(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return const TaskDetail();
+                        }),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Row(
+                        children: [
+                          CircleAvatarText(
+                            text: GetInitials.getInitials(
+                                taskResponse.today![index].title ?? ""),
+                            radius: 20,
+                          ),
+                          const SizedBox(width: 5),
+                          CustomText(
+                              text: taskResponse.today![index].title ?? ""),
+                        ],
+                      ),
                     ),
                   );
                 }),
@@ -90,19 +101,29 @@ class TaskListScreen extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: taskResponse.tomorrow!.length ?? 0,
                 itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Row(
-                      children: [
-                        CircleAvatarText(
-                          text: GetInitials.getInitials(
-                              taskResponse.tomorrow![index].title ?? ""),
-                          radius: 20,
-                        ),
-                        const SizedBox(width: 5),
-                        CustomText(
-                            text: taskResponse.tomorrow![index].title ?? ""),
-                      ],
+                  return InkWell(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return const TaskDetail();
+                        }),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Row(
+                        children: [
+                          CircleAvatarText(
+                            text: GetInitials.getInitials(
+                                taskResponse.tomorrow![index].title ?? ""),
+                            radius: 20,
+                          ),
+                          const SizedBox(width: 5),
+                          CustomText(
+                              text: taskResponse.tomorrow![index].title ?? ""),
+                        ],
+                      ),
                     ),
                   );
                 }),
@@ -117,19 +138,29 @@ class TaskListScreen extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: taskResponse.upcoming!.length ?? 0,
                 itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Row(
-                      children: [
-                        CircleAvatarText(
-                          text: GetInitials.getInitials(
-                              taskResponse.upcoming![index].title ?? ""),
-                          radius: 20,
-                        ),
-                        const SizedBox(width: 5),
-                        CustomText(
-                            text: taskResponse.upcoming![index].title ?? ""),
-                      ],
+                  return InkWell(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return const TaskDetail();
+                        }),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Row(
+                        children: [
+                          CircleAvatarText(
+                            text: GetInitials.getInitials(
+                                taskResponse.upcoming![index].title ?? ""),
+                            radius: 20,
+                          ),
+                          const SizedBox(width: 5),
+                          CustomText(
+                              text: taskResponse.upcoming![index].title ?? ""),
+                        ],
+                      ),
                     ),
                   );
                 }),

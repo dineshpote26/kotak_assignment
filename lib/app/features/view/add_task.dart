@@ -61,6 +61,8 @@ class AddTaskScreen extends StatelessWidget {
               CustomButton(
                   text: "Add Task",
                   color: Colors.blue,
+                  borderRadius: 2,
+                  buttonWidth: 200,
                   onTap: () {
                   })
             ],
