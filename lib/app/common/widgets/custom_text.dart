@@ -43,14 +43,14 @@ class CustomText extends StatelessWidget {
 
   String getFontFamily(FontWeight? fontWeight) {
     if (fontWeight == AppFontWeight.semiBold) {
-      return FontFamily.jioTypeBlack;
+      return FontFamily.customBlack;
     } else if (fontWeight == AppFontWeight.bold || fontWeight == AppFontWeight.black) {
-      return FontFamily.jioTypeBold;
+      return FontFamily.customBold;
     } else if (fontWeight == AppFontWeight.medium) {
-      return FontFamily.jioTypeMedium;
+      return FontFamily.customMedium;
     } else if (fontWeight == AppFontWeight.light) {
-      return FontFamily.jioTypeLight;
+      return FontFamily.customLight;
     }
-    return FontFamily.jioTypeMedium;
+    return FontFamily.customMedium;
   }
 }

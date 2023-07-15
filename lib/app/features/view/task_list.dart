@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:kotak_assignment/app/common/utils/get_initials.dart';
 import 'package:kotak_assignment/app/common/widgets/circle_avatar_text.dart';
 import 'package:kotak_assignment/app/common/widgets/custom_text.dart';
+import 'package:kotak_assignment/app/features/view/add_task.dart';
 import 'package:kotak_assignment/app/models/task.dart';
 import 'package:kotak_assignment/app/models/task_response.dart';
 
-class TodoListScreen extends StatelessWidget {
-  TodoListScreen({Key? key}) : super(key: key);
+class TaskListScreen extends StatelessWidget {
+  TaskListScreen({Key? key}) : super(key: key);
 
   TaskResponse taskResponse = TaskResponse(today: [
     const Task(
@@ -36,7 +37,14 @@ class TodoListScreen extends StatelessWidget {
         title: const Text("Task Management"),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) {
+              return AddTaskScreen();
+            }),
+          );
+        },
         child: const Icon(Icons.add),
       ),
       body: Padding(
