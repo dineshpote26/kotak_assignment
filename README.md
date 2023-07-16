@@ -37,3 +37,6 @@ Design pattern using BLoC.
 
    <img src='https://github.com/dineshpote26/kotak_assignment/blob/main/screentshot/1.jpeg' width="200" height="350"/>
 
+## Android Build
+https://easyupload.io/oz8vbj
+
