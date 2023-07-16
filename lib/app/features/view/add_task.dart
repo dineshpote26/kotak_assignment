@@ -9,18 +9,38 @@ import 'package:kotak_assignment/app/features/bloc/tasks_bloc.dart';
 import 'package:kotak_assignment/app/features/bloc/tasks_event.dart';
 import 'package:kotak_assignment/app/models/task.dart';
 
-class AddTaskScreen extends StatelessWidget {
-  AddTaskScreen({Key? key}) : super(key: key);
+class AddTaskScreen extends StatefulWidget {
 
+  final Task? task;
+
+  AddTaskScreen({Key? key, this.task}) : super(key: key);
+
+  @override
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
   TextEditingController titleController = TextEditingController();
+
   TextEditingController descController = TextEditingController();
+
   TextEditingController dateController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    if(widget.task!=null){
+      titleController.text = widget.task?.title ?? "";
+      descController.text = widget.task?.description ?? "";
+      dateController.text = widget.task?.selectionDate ?? "";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: AppBar(title: const CustomText(text: "Add Task"),centerTitle: false,),
+      appBar: AppBar(title:  CustomText(text: (widget.task!=null) ? "Edit Task" : "Add Task"),centerTitle: false,),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 16),
@@ -64,12 +84,16 @@ class AddTaskScreen extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               CustomButton(
-                  text: "Add Task",
+                  text: (widget.task!=null) ? "Edit Task" : "Add Task",
                   color: Colors.blue,
                   borderRadius: 2,
                   buttonWidth: 200,
                   onTap: () {
-                    BlocProvider.of<TaskBloc>(context).add(AddTask(task: Task(title: titleController.text,description: descController.text,selectionDate: dateController.text)));
+                    if( widget.task!=null){
+                      BlocProvider.of<TaskBloc>(context).add(UpdateTask(task: Task(id : widget.task?.id,title: titleController.text,description: descController.text,selectionDate: dateController.text)));
+                    }else{
+                      BlocProvider.of<TaskBloc>(context).add(AddTask(task: Task(title: titleController.text,description: descController.text,selectionDate: dateController.text)));
+                    }
                     Navigator.of(context).pop();
                   })
             ],

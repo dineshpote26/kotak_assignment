@@ -49,13 +49,10 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     emit(TaskLoaded(tasks: tasks));
   }
 
-  void _onUpdateTask(UpdateTask event, Emitter<TaskState> emit) {
-    final state = this.state;
-    if (state is TaskLoaded) {
-      List<Task> taskList = (state.tasks.map((data) {
-        return data.id == event.task.id ? event.task : data;
-      })).toList();
-      emit(TaskLoaded(tasks: taskList));
-    }
+  void _onUpdateTask(UpdateTask event, Emitter<TaskState> emit) async{
+    emit(TaskLoading());
+    await _taskRepository.updateTask(event.task);
+    final tasks = await _taskRepository.getAllTask();
+    emit(TaskLoaded(tasks: tasks));
   }
 }

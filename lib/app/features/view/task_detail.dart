@@ -4,6 +4,7 @@ import 'package:kotak_assignment/app/common/widgets/custom_button.dart';
 import 'package:kotak_assignment/app/common/widgets/custom_text.dart';
 import 'package:kotak_assignment/app/features/bloc/tasks_bloc.dart';
 import 'package:kotak_assignment/app/features/bloc/tasks_event.dart';
+import 'package:kotak_assignment/app/features/view/add_task.dart';
 import 'package:kotak_assignment/app/models/task.dart';
 
 class TaskDetail extends StatelessWidget {
@@ -47,6 +48,12 @@ class TaskDetail extends StatelessWidget {
                       text: "Edit Task",
                       color: Colors.blue,
                       onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) {
+                            return AddTaskScreen(task : task);
+                          }),
+                        );
                       }),
                  ),
                   const SizedBox(width: 40),
