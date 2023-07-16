@@ -22,14 +22,18 @@ Design pattern using BLoC.
 
 ## Final Output
 1. Task List
-   <img src='https://github.com/dineshpote26/kotak_assignment/blob/main/screentshot/1.jpeg' width="128" height="200"/>
+
+   <img src='https://github.com/dineshpote26/kotak_assignment/blob/main/screentshot/1.jpeg' width="200" height="350"/>
 
 2. Task Details
-   <img src='https://github.com/dineshpote26/kotak_assignment/blob/main/screentshot/2.jpeg' width="128" height="200"/>
+
+   <img src='https://github.com/dineshpote26/kotak_assignment/blob/main/screentshot/2.jpeg' width="200" height="350"/>
 
 3. Add Task
-   <img src='https://github.com/dineshpote26/kotak_assignment/blob/main/screentshot/3.jpeg' width="128" height="200"/>
+
+   <img src='https://github.com/dineshpote26/kotak_assignment/blob/main/screentshot/3.jpeg' width="200" height="350"/>
 
 4. Update Task
-   <img src='https://github.com/dineshpote26/kotak_assignment/blob/main/screentshot/1.jpeg' width="128" height="200"/>
+
+   <img src='https://github.com/dineshpote26/kotak_assignment/blob/main/screentshot/1.jpeg' width="200" height="350"/>
 
