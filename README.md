@@ -22,11 +22,11 @@ Design pattern using BLoC.
 
 ## Final Output
 1. Task List
-![Task List](http://url/to/img.png)
+![Task List](https://github.com/dineshpote26/kotak_assignment/blob/main/screentshot/1.jpeg)
 2. Task Details
-![Task Details](http://url/to/img.png)
+![Task Details](https://github.com/dineshpote26/kotak_assignment/blob/main/screentshot/2.jpeg)
 3. Add Task 
-![Add Task](http://url/to/img.png)
+![Add Task](https://github.com/dineshpote26/kotak_assignment/blob/main/screentshot/3.jpeg)
 4. Update Task
-![Update Task](http://url/to/img.png)
+![Update Task](https://github.com/dineshpote26/kotak_assignment/blob/main/screentshot/4.jpeg)
 
