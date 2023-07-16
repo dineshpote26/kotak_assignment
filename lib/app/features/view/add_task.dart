@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kotak_assignment/app/common/style/app_colors.dart';
 import 'package:kotak_assignment/app/common/utils/validators.dart';
 import 'package:kotak_assignment/app/common/widgets/custom_button.dart';
 import 'package:kotak_assignment/app/common/widgets/custom_text.dart';
 import 'package:kotak_assignment/app/common/widgets/custom_text_field_widget.dart';
+import 'package:kotak_assignment/app/features/bloc/tasks_bloc.dart';
+import 'package:kotak_assignment/app/features/bloc/tasks_event.dart';
+import 'package:kotak_assignment/app/models/task.dart';
 
 class AddTaskScreen extends StatelessWidget {
   AddTaskScreen({Key? key}) : super(key: key);
@@ -15,6 +19,7 @@ class AddTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       appBar: AppBar(title: const CustomText(text: "Add Task"),centerTitle: false,),
       body: SingleChildScrollView(
         child: Padding(
@@ -64,6 +69,8 @@ class AddTaskScreen extends StatelessWidget {
                   borderRadius: 2,
                   buttonWidth: 200,
                   onTap: () {
+                    BlocProvider.of<TaskBloc>(context).add(AddTask(task: Task(title: titleController.text,description: descController.text,selectionDate: dateController.text)));
+                    Navigator.of(context).pop();
                   })
             ],
           ),

@@ -1,8 +1,12 @@
+import 'package:kotak_assignment/app/features/repository/iTask_repository.dart';
 import 'package:kotak_assignment/app/models/task.dart';
-import 'package:kotak_assignment/app/models/task_response.dart';
 
-class TaskRepository {
-  Future<List<Task>> getTask({required int type}) async {
+class TaskRepository extends ITodoRepository {
+
+  final String _collectionPath = 'tasks';
+  final String _orderField = 'createdAt';
+
+  /*Future<List<Task>> getTask({required int type}) async {
     TaskResponse taskResponse = TaskResponse(today: [
       const Task(
           title: 'Task1',
@@ -32,5 +36,27 @@ class TaskRepository {
       return taskResponse.upcoming ?? [];
     }
     return taskResponse.today ?? [];
+  }*/
+
+  @override
+  Future<void> addTask(Task task) async{
+    await firestore.collection(_collectionPath).add(task.toJson());
+  }
+
+  @override
+  Future<List<Task>> getAllTask() async{
+    List<Task> todos = [];
+    final results = await firestore.collection(_collectionPath).orderBy(_orderField).get();
+    for (var snapshot in results.docs) {
+      Task newTodo = Task.fromJson(snapshot.data());
+      newTodo.id = snapshot.id;
+      todos.add(newTodo);
+    }
+    return todos;
+  }
+
+  @override
+  Future<void> removeTask(Task task) async{
+    await firestore.collection(_collectionPath).doc(task.id).delete();
   }
 }

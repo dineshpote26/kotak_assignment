@@ -19,28 +19,34 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   Future<void> _onLoadTask(LoadTasks event, Emitter<TaskState> emit) async {
     emit(TaskLoading());
     try {
-      final tasks = await _taskRepository.getTask(type: 1);
+      final tasks = await _taskRepository.getAllTask();
       emit(TaskLoaded(tasks: tasks));
     } catch (e) {
       emit(TasksError(e.toString()));
     }
   }
 
-  void _onAddTask(AddTask event, Emitter<TaskState> emit) {
-    final state = this.state;
+  void _onAddTask(AddTask event, Emitter<TaskState> emit) async{
+    /*final state = this.state;
     if (state is TaskLoaded) {
       emit(TaskLoaded(tasks: List.from(state.tasks)..add(event.task)));
+    }*/
+    if (event.task.title!.isEmpty) return;
+    emit(TaskLoading());
+    try {
+       await _taskRepository.addTask(event.task);
+       final tasks = await _taskRepository.getAllTask();
+      emit(TaskLoaded(tasks: tasks));
+    } catch (e) {
+      emit(TasksError(e.toString()));
     }
   }
 
-  void _onDeleteTask(DeleteTask event, Emitter<TaskState> emit) {
-    final state = this.state;
-    if (state is TaskLoaded) {
-      List<Task> taskList = state.tasks.where((data) {
-        return data.id != event.task.id;
-      }).toList();
-      emit(TaskLoaded(tasks: taskList));
-    }
+  void _onDeleteTask(DeleteTask event, Emitter<TaskState> emit) async{
+    emit(TaskLoading());
+    await _taskRepository.removeTask(event.task);
+    final tasks = await _taskRepository.getAllTask();
+    emit(TaskLoaded(tasks: tasks));
   }
 
   void _onUpdateTask(UpdateTask event, Emitter<TaskState> emit) {
