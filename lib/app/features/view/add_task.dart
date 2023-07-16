@@ -111,7 +111,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     if(widget.task!=null){
                       BlocProvider.of<TaskBloc>(context).add(UpdateTask(task: Task(id : widget.task?.id,title: titleController.text,description: descController.text,selectionDate: dateController.text)));
                     }else{
-                      BlocProvider.of<TaskBloc>(context).add(AddTask(task: Task(title: titleController.text,description: descController.text,selectionDate: dateController.text)));
+                      BlocProvider.of<TaskBloc>(context).add(AddTask(task: Task(id: DateTime.now().microsecondsSinceEpoch.toString(), title: titleController.text,description: descController.text,selectionDate: dateController.text)));
                     }
                     Navigator.of(context).pop();
                   })

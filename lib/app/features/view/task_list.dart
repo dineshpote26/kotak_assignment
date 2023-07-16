@@ -48,6 +48,7 @@ class TaskListScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     const SizedBox(height: 8),
+                    state.todayTask.isNotEmpty ?
                     ListView.builder(
                         shrinkWrap: true,
                         primary: false,
@@ -80,7 +81,7 @@ class TaskListScreen extends StatelessWidget {
                               ),
                             ),
                           );
-                        }),
+                        }) :  const Center(child: Text('No Task Found')),
                     const SizedBox(height: 12),
                     const CustomText(
                       text: "Tomorrow",
@@ -88,6 +89,7 @@ class TaskListScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     const SizedBox(height: 8),
+                    state.tomorrowTask.isNotEmpty ?
                     ListView.builder(
                         shrinkWrap: true,
                         primary: false,
@@ -120,7 +122,7 @@ class TaskListScreen extends StatelessWidget {
                               ),
                             ),
                           );
-                        }),
+                        }) :  const Center(child: Text('No Task Found')),
                     const SizedBox(height: 12),
                     const CustomText(
                       text: "Upcoming",
@@ -128,6 +130,7 @@ class TaskListScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     const SizedBox(height: 8),
+                    state.upcomingTask.isNotEmpty ?
                     ListView.builder(
                         shrinkWrap: true,
                         primary: false,
@@ -160,7 +163,7 @@ class TaskListScreen extends StatelessWidget {
                               ),
                             ),
                           );
-                        }),
+                        }) :  const Center(child: Text('No Task Found')),
                   ],
                 ),
               ),
