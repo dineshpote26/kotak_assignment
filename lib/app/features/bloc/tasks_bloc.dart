@@ -39,7 +39,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         DateTime now = DateTime.now();
         final today = DateTime(now.year, now.month, now.day);
         final tomorrow = DateTime(now.year, now.month, now.day + 1);
-
         DateTime dbDate = DateTime.parse(task.selectionDate ?? "");
         if(dbDate == today ){
           todayList.add(task);
@@ -51,7 +50,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       }catch(e){
         print(e.toString());
       }
-      //print();
     }
   }
 
