@@ -25,14 +25,29 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   TextEditingController descController = TextEditingController();
 
   TextEditingController dateController = TextEditingController();
-
+  DateTime selectedDate = DateTime.now();
   @override
   void initState() {
     super.initState();
+
     if(widget.task!=null){
       titleController.text = widget.task?.title ?? "";
       descController.text = widget.task?.description ?? "";
       dateController.text = widget.task?.selectionDate ?? "";
+    }
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        dateController.text = "${selectedDate.toLocal()}".split(' ')[0];
+      });
     }
   }
 
@@ -72,12 +87,16 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
               const SizedBox(height: 16),
               CustomUnderlineTextFieldWithLabel(
-                autoFocus: true,
+                autoFocus: false,
                 isDense: false,
                 key: const ValueKey("date"),
                 controller: dateController,
                 labelText: "Date",
                 fillColor: AppColors.white,
+                enabled: true,
+                onTap: (){
+                  _selectDate(context);
+                },
                 validator: Validators.validateEmpty,
                 contentPadding:
                 const EdgeInsets.only(bottom: 10.0, top: 0.0),

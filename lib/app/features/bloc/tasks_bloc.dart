@@ -2,7 +2,6 @@ import 'package:kotak_assignment/app/features/bloc/tasks_event.dart';
 import 'package:kotak_assignment/app/features/bloc/tasks_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kotak_assignment/app/features/repository/task_repository.dart';
-import 'package:kotak_assignment/app/models/task.dart';
 
 class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
