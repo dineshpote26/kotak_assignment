@@ -108,7 +108,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   borderRadius: 2,
                   buttonWidth: 200,
                   onTap: () {
-                    if( widget.task!=null){
+                    if(widget.task!=null){
                       BlocProvider.of<TaskBloc>(context).add(UpdateTask(task: Task(id : widget.task?.id,title: titleController.text,description: descController.text,selectionDate: dateController.text)));
                     }else{
                       BlocProvider.of<TaskBloc>(context).add(AddTask(task: Task(title: titleController.text,description: descController.text,selectionDate: dateController.text)));

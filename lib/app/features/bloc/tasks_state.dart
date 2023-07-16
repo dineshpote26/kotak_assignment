@@ -13,7 +13,13 @@ class TaskLoading extends TaskState {}
 class TaskLoaded extends TaskState {
   final List<Task> tasks;
 
-  const TaskLoaded({this.tasks = const <Task>[]});
+  final List<Task> todayTask;
+
+  final List<Task> tomorrowTask;
+
+  final List<Task> upcomingTask;
+
+  const TaskLoaded({this.tasks = const <Task>[],this.todayTask = const <Task>[],this.tomorrowTask = const <Task>[],this.upcomingTask = const <Task>[]});
 
 
   @override

@@ -52,11 +52,11 @@ class TaskListScreen extends StatelessWidget {
                         shrinkWrap: true,
                         primary: false,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: state.tasks.length,
+                        itemCount: state.todayTask.length,
                         itemBuilder: (BuildContext context, int index) {
                           return InkWell(
                             onTap: (){
-                              Task task = state.tasks[index];
+                              Task task = state.todayTask[index];
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) {
@@ -70,12 +70,12 @@ class TaskListScreen extends StatelessWidget {
                                 children: [
                                   CircleAvatarText(
                                     text: GetInitials.getInitials(
-                                        state.tasks[index].title ?? ""),
+                                        state.todayTask[index].title ?? ""),
                                     radius: 20,
                                   ),
                                   const SizedBox(width: 5),
                                   CustomText(
-                                      text: state.tasks[index].title ?? ""),
+                                      text: state.todayTask[index].title ?? ""),
                                 ],
                               ),
                             ),
@@ -92,11 +92,11 @@ class TaskListScreen extends StatelessWidget {
                         shrinkWrap: true,
                         primary: false,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: state.tasks.length,
+                        itemCount: state.tomorrowTask.length,
                         itemBuilder: (BuildContext context, int index) {
                           return InkWell(
                             onTap: (){
-                              Task task = state.tasks[index];
+                              Task task = state.tomorrowTask[index];
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) {
@@ -110,12 +110,12 @@ class TaskListScreen extends StatelessWidget {
                                 children: [
                                   CircleAvatarText(
                                     text: GetInitials.getInitials(
-                                        state.tasks[index].title ?? ""),
+                                        state.tomorrowTask[index].title ?? ""),
                                     radius: 20,
                                   ),
                                   const SizedBox(width: 5),
                                   CustomText(
-                                      text: state.tasks[index].title ?? ""),
+                                      text: state.tomorrowTask[index].title ?? ""),
                                 ],
                               ),
                             ),
@@ -132,11 +132,11 @@ class TaskListScreen extends StatelessWidget {
                         shrinkWrap: true,
                         primary: false,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: state.tasks.length,
+                        itemCount: state.upcomingTask.length,
                         itemBuilder: (BuildContext context, int index) {
                           return InkWell(
                             onTap: (){
-                              Task task = state.tasks[index];
+                              Task task = state.upcomingTask[index];
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) {
@@ -150,12 +150,12 @@ class TaskListScreen extends StatelessWidget {
                                 children: [
                                   CircleAvatarText(
                                     text: GetInitials.getInitials(
-                                        state.tasks[index].title ?? ""),
+                                        state.upcomingTask[index].title ?? ""),
                                     radius: 20,
                                   ),
                                   const SizedBox(width: 5),
                                   CustomText(
-                                      text: state.tasks[index].title ?? ""),
+                                      text: state.upcomingTask[index].title ?? ""),
                                 ],
                               ),
                             ),
